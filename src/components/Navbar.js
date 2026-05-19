@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
 import {
-  AiFillStar,
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
