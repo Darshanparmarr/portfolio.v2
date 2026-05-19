@@ -33,7 +33,7 @@ function Projects() {
               isBlog={false}
               title="Thirtysix-Studios Clone"
               description="Developed a 100% React.js-based website, inspired by an Awwwards-recognized design, focusing on replicating its premium UI/UX, smooth animations, and modern interactive features."
-              ghLink="https://thirtysixstudios-pi.vercel.app/"
+              ghLink="https://thirtysixstudiosclone.vercel.app/"
             />
           </Col>
 
