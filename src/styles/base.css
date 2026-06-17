@@ -43,7 +43,14 @@ h1, h2, h3, h4 {
   line-height: 0.95;
   letter-spacing: -0.03em;
   text-wrap: balance;
+  /* Safety net: monumental display type must never punch past the content
+     box on narrow phones. Allow long words to break instead of overflowing. */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
+
+/* Long URLs / emails / mono strings in body copy shouldn't force overflow */
+p, li, a, span { overflow-wrap: break-word; }
 
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
@@ -158,3 +165,37 @@ ul { list-style: none; }
 }
 .btn--solid::after { background: var(--fg); }
 .btn--solid:hover { color: var(--bg); }
+
+/* =========================================================================
+   RESPONSIVE FOUNDATION — global overflow guard + mobile spacing.
+   Desktop (≥1280px) is untouched; these only tighten the small end.
+   ========================================================================= */
+
+/* Belt-and-braces against horizontal overflow at any width. body already
+   has overflow-x: clip; clip the root too so nothing can scroll sideways. */
+html { overflow-x: clip; }
+:where(body) { max-width: 100%; }
+
+/* Tablet: ease the monumental section padding so sections don't feel
+   desktop-crammed but keep generous rhythm. */
+@media (max-width: 1024px) {
+  :root { --section-pad: clamp(4.5rem, 10vh, 8rem); }
+}
+
+/* Phones: comfortable spacing, tighter gutters, tap-friendly buttons. */
+@media (max-width: 640px) {
+  :root {
+    --section-pad: clamp(3.5rem, 9vh, 5.5rem);
+  }
+
+  .btn {
+    --pad-y: 0.95rem;
+    --pad-x: 1.5rem;
+    min-height: 44px; /* tap target */
+  }
+}
+
+/* Coarse pointers (touch): ensure buttons/links meet the 44px tap target. */
+@media (hover: none) {
+  .btn { min-height: 44px; }
+}

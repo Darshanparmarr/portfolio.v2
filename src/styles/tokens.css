@@ -32,20 +32,24 @@
   --font-body:    "Inter", system-ui, -apple-system, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 
-  /* ---- Fluid type scale (clamp: min, preferred, max) -------------------- */
-  --fs-mega:    clamp(2.7rem, 14vw, 16rem);   /* hero monumental type   */
-  --fs-hero:    clamp(2.8rem, 11vw, 11rem);
-  --fs-display: clamp(2.3rem, 7vw, 6.5rem);   /* section headlines      */
-  --fs-h2:      clamp(1.9rem, 5vw, 3.6rem);
-  --fs-h3:      clamp(1.35rem, 2.4vw, 2.1rem);
-  --fs-lead:    clamp(1.25rem, 2.3vw, 2rem);  /* intro paragraphs       */
+  /* ---- Fluid type scale (clamp: min, preferred, max) --------------------
+     The MIN values are tuned so the largest headings fit a ~280px content
+     box on a 320px phone (320 − 2×~20px gutter). The MAX (desktop ≥1280px)
+     values are unchanged. The preferred (vw) term is the binding value in
+     the mid range; mins only kick in on the smallest phones. */
+  --fs-mega:    clamp(2.4rem, 13vw, 16rem);   /* hero monumental type   */
+  --fs-hero:    clamp(2.5rem, 10.5vw, 11rem);
+  --fs-display: clamp(2.1rem, 7vw, 6.5rem);   /* section headlines      */
+  --fs-h2:      clamp(1.75rem, 5vw, 3.6rem);
+  --fs-h3:      clamp(1.3rem, 2.4vw, 2.1rem);
+  --fs-lead:    clamp(1.15rem, 2.3vw, 2rem);  /* intro paragraphs       */
   --fs-body:    clamp(1rem, 1.05vw, 1.15rem);
   --fs-sm:      0.9rem;
   --fs-label:   0.74rem;                      /* mono eyebrow labels    */
 
   /* ---- Spacing & layout ------------------------------------------------- */
   --section-pad: clamp(5rem, 13vh, 12rem);
-  --gutter:      clamp(1.25rem, 5vw, 6rem);   /* page side padding      */
+  --gutter:      clamp(1.15rem, 5vw, 6rem);   /* page side padding      */
   --maxw:        1680px;
   --maxw-text:   62ch;
 

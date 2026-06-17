@@ -21,7 +21,8 @@
   align-items: center;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-size: clamp(1.3rem, 4vw, 3rem);
+  line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--fg);
   text-transform: uppercase;
@@ -41,4 +42,13 @@
 
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; }
+}
+
+/* Phones: smaller items + tighter spacing so the band stays slim and never
+   introduces a vertical scrollbar. Horizontal containment is guaranteed by
+   .marquee { overflow: hidden }. */
+@media (max-width: 640px) {
+  .marquee { padding-block: clamp(0.85rem, 3vw, 1.1rem); }
+  .marquee__item { padding-inline: clamp(0.9rem, 4vw, 1.4rem); }
+  .marquee__star { margin-left: clamp(0.9rem, 4vw, 1.4rem); }
 }

@@ -145,11 +145,78 @@
 }
 
 /* ---- Responsive ---- */
+
+/* Tablet (768–1024): intentional intermediate — slightly tighter rhythm,
+   intro stays top-right, meta stays in a row but a touch closer. */
+@media (max-width: 1024px) {
+  .hero__inner {
+    padding-top: clamp(5.5rem, 12vh, 8rem);
+    gap: clamp(1.75rem, 4.5vh, 3rem);
+  }
+  .hero__top { gap: 1.5rem; }
+  .hero__meta { gap: 1.75rem 2.5rem; }
+}
+
+/* Phones / small tablets */
 @media (max-width: 760px) {
-  .hero__intro { text-align: left; }
+  /* Allow the hero to grow past the viewport on short screens so the
+     intro + 2-line title + meta never clip; keep 100svh as a floor. */
+  .hero { min-height: auto; }
+  .hero__inner {
+    min-height: 100svh;
+    padding-top: clamp(5rem, 16vh, 7rem);
+    padding-bottom: clamp(2rem, 6vh, 3.5rem);
+    gap: clamp(1.5rem, 5vh, 2.5rem);
+  }
+
+  /* Intro: left-aligned at top, not cramped on the right edge. */
+  .hero__top { justify-content: flex-start; }
+  .hero__intro {
+    text-align: left;
+    max-width: 40ch;
+    line-height: 1.5;
+  }
+
+  /* Cap the monumental type so the longest word ("DEVELOPER") fits the
+     content box (≈viewport − 2×gutter) without horizontal overflow. */
+  .hero__title {
+    font-size: clamp(2.3rem, 13.5vw, 5rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
   .hero__cue { display: none; }
 }
+
+/* Stack the meta row and left-align everything on phones. */
 @media (max-width: 680px) {
-  .hero__meta { flex-direction: column; align-items: flex-start; }
-  .hero__meta-side { align-items: flex-start; }
+  .hero__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-top: 1.4rem;
+  }
+  .hero__meta-side {
+    align-items: flex-start;
+    width: 100%;
+    gap: 1.1rem;
+  }
+  /* Comfortable tap target for the CTA. */
+  .hero__meta-side .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* Very short viewports (e.g. 320×568, 360×640 landscape-ish): shrink the
+   monumental type and vertical rhythm further so nothing clips or overlaps. */
+@media (max-width: 760px) and (max-height: 680px) {
+  .hero__inner {
+    min-height: auto;
+    padding-top: clamp(4rem, 10vh, 5.5rem);
+    gap: clamp(1.1rem, 3.5vh, 1.75rem);
+  }
+  .hero__title { font-size: clamp(2.1rem, 12vw, 3.5rem); }
+  .hero__tagline { margin-top: 0.4rem; }
 }

@@ -207,6 +207,18 @@
 }
 
 /* ---- Responsive ----------------------------------------------------------- */
+/* Tablet (≈821–1024): keep the 3-col grid but ease the desktop scale so rows
+   don't feel crammed and the title can never crowd the meta column. */
+@media (min-width: 821px) and (max-width: 1024px) {
+  .work__row {
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+  }
+  .work__title {
+    font-size: clamp(2rem, 5.5vw, 3.75rem);
+  }
+}
+
 @media (max-width: 820px) {
   /* Stack the row vertically: index, title, inline image, meta. */
   .work__row {
@@ -225,7 +237,7 @@
     order: 1;
   }
   .work__title {
-    font-size: clamp(2.25rem, 11vw, 4.5rem);
+    font-size: clamp(2rem, 10vw, 4.5rem);
   }
   .work__inline-wrap {
     order: 2;
@@ -243,8 +255,23 @@
 }
 
 @media (max-width: 560px) {
+  .work__row {
+    padding: clamp(1.5rem, 5vw, 2rem) 0;
+    gap: 0.9rem;
+  }
+  .work__title-wrap {
+    /* allow wrapping so the trailing arrow never forces overflow */
+    flex-wrap: wrap;
+    gap: 0.35rem 0.6rem;
+  }
   .work__title {
-    font-size: clamp(2rem, 13vw, 3.5rem);
+    /* scaled so the longest title ("THIRTYSIX STUDIOS"/"TECHUPGRAD") fits the
+       ~283px content box at 320px without clipping; anywhere-wrap is the net */
+    font-size: clamp(1.85rem, 11.5vw, 3.5rem);
+  }
+  .work__meta {
+    /* long mono meta line can run wide on tiny phones — let it wrap */
+    overflow-wrap: anywhere;
   }
   .work__tag {
     padding: 0.25em 0.6em;

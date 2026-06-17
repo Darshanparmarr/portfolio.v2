@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 
-/* ── Head ─────────────────────────────────────────────────────────── */
+/* ── Head ───────────────────────────────────────────────── */
 .experience__head {
   margin-bottom: clamp(3rem, 7vw, 6rem);
 }
@@ -33,12 +33,12 @@
   font-style: normal;
 }
 
-/* ── Timeline (rail + list) ───────────────────────────────────────── */
+/* ── Timeline (rail + list) ─────────────────────────── */
 .experience__timeline {
   position: relative;
 }
 
-/* ── Timeline list ────────────────────────────────────────────────── */
+/* ── Timeline list ───────────────────────────────────── */
 .experience__list {
   position: relative;
   list-style: none;
@@ -72,7 +72,7 @@
   box-shadow: 0 0 18px var(--glow);
 }
 
-/* ── Item ─────────────────────────────────────────────────────────── */
+/* ── Item ───────────────────────────────────────────────── */
 .experience__item {
   position: relative;
   display: grid;
@@ -145,7 +145,7 @@
   }
 }
 
-/* ── Content ──────────────────────────────────────────────────────── */
+/* ── Content ───────────────────────────────────────────── */
 .experience__content {
   min-width: 0;
 }
@@ -198,6 +198,8 @@
   line-height: 1.05;
   letter-spacing: -0.01em;
   color: var(--fg);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .experience__company {
@@ -212,6 +214,8 @@
 .experience__company strong {
   font-weight: 600;
   color: var(--accent-2);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .experience__loc {
@@ -227,9 +231,11 @@
   font-size: var(--fs-body);
   line-height: 1.6;
   color: var(--fg-dim);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
-/* ── Tags ─────────────────────────────────────────────────────────── */
+/* ── Tags ───────────────────────────────────────────────── */
 .experience__tags {
   display: flex;
   flex-wrap: wrap;
@@ -241,6 +247,7 @@
 
 .experience__tag {
   padding: 0.4em 0.95em;
+  max-width: 100%;
   border-radius: var(--radius-pill);
   border: 1px solid var(--line);
   font-family: var(--font-mono);
@@ -248,6 +255,8 @@
   letter-spacing: 0.03em;
   color: var(--fg-dim);
   background: rgba(243, 238, 230, 0.02);
+  overflow-wrap: break-word;
+  word-break: break-word;
   transition: color var(--dur-fast) var(--ease),
     border-color var(--dur-fast) var(--ease);
 }
@@ -264,7 +273,7 @@
   }
 }
 
-/* ── Responsive ───────────────────────────────────────────────────── */
+/* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 820px) {
   .experience__item {
     grid-template-columns: clamp(34px, 9vw, 54px) minmax(0, 1fr);
@@ -283,8 +292,19 @@
   .experience__pulse {
     left: 6px;
   }
+  .experience__meta {
+    gap: 0.55rem 0.7rem;
+    margin-bottom: 0.6rem;
+  }
   .experience__company {
     gap: 0.3rem 0.6rem;
+  }
+  .experience__summary {
+    margin-top: 0.95rem;
+  }
+  .experience__tags {
+    gap: 0.5rem;
+    margin-top: 1.15rem;
   }
 }
 
