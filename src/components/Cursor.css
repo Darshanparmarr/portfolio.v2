@@ -1,0 +1,52 @@
+.cursor-ring,
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  will-change: transform;
+}
+
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* Label pill rides the (unblended) dot layer so it's legible over anything.
+   gsap owns transform (xPercent/yPercent/scale) + opacity. */
+.cursor-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 0.45em 0.75em;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 20px -6px var(--glow);
+}
+
+/* Hide custom cursor entirely on touch / no-hover devices */
+@media (hover: none) {
+  .cursor-ring, .cursor-dot { display: none; }
+}

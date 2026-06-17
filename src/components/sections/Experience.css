@@ -1,0 +1,297 @@
+.experience {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Head ─────────────────────────────────────────────────────────── */
+.experience__head {
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.experience__heading {
+  margin: clamp(1rem, 2.5vw, 1.8rem) 0 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.experience__heading-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.experience__heading-inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+.experience__heading em {
+  font-style: normal;
+}
+
+/* ── Timeline (rail + list) ───────────────────────────────────────── */
+.experience__timeline {
+  position: relative;
+}
+
+/* ── Timeline list ────────────────────────────────────────────────── */
+.experience__list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Vertical rail track + drawn fill */
+.experience__rail {
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: clamp(7px, 1.2vw, 11px);
+  width: 2px;
+  background: var(--line);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.experience__rail-fill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: top center;
+  background: linear-gradient(
+    to bottom,
+    var(--accent),
+    var(--accent-2) 55%,
+    var(--glow-soft)
+  );
+  box-shadow: 0 0 18px var(--glow);
+}
+
+/* ── Item ─────────────────────────────────────────────────────────── */
+.experience__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(48px, 7vw, 92px) minmax(0, 1fr);
+  align-items: start;
+  padding: clamp(2.2rem, 4vw, 3.4rem) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.experience__item:first-child {
+  padding-top: 0.4rem;
+}
+
+.experience__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Marker dot aligned to the rail */
+.experience__marker {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 1.6em;
+}
+
+.experience__dot {
+  position: absolute;
+  top: 0.45em;
+  left: clamp(7px, 1.2vw, 11px);
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--fg-mute);
+  box-shadow: 0 0 0 4px var(--bg-2);
+  transition: background var(--dur) var(--ease);
+}
+
+.experience__item--current .experience__dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--bg-2), 0 0 16px var(--glow);
+}
+
+/* Pulsing halo on current role */
+.experience__pulse {
+  position: absolute;
+  top: 0.45em;
+  left: clamp(7px, 1.2vw, 11px);
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: experience-pulse 2.4s var(--ease-io, ease-out) infinite;
+}
+
+@keyframes experience-pulse {
+  0% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(3.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(3.4);
+  }
+}
+
+/* ── Content ──────────────────────────────────────────────────────── */
+.experience__content {
+  min-width: 0;
+}
+
+.experience__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+
+.experience__period {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+.experience__now {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.28em 0.8em;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  background: var(--glow-soft);
+}
+
+.experience__now::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--glow);
+}
+
+.experience__role {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+.experience__company {
+  margin: 0.55rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: var(--fs-lead);
+}
+
+.experience__company strong {
+  font-weight: 600;
+  color: var(--accent-2);
+}
+
+.experience__loc {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.02em;
+  color: var(--fg-mute);
+}
+
+.experience__summary {
+  margin: 1.1rem 0 0;
+  max-width: 60ch;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--fg-dim);
+}
+
+/* ── Tags ─────────────────────────────────────────────────────────── */
+.experience__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience__tag {
+  padding: 0.4em 0.95em;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.03em;
+  color: var(--fg-dim);
+  background: rgba(243, 238, 230, 0.02);
+  transition: color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.experience__item--current .experience__tag {
+  color: var(--fg);
+  border-color: var(--line-2);
+}
+
+/* Hover affordance only on pointer-capable devices */
+@media (hover: hover) {
+  .experience__item:hover .experience__tag {
+    border-color: var(--line-2);
+  }
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 820px) {
+  .experience__item {
+    grid-template-columns: clamp(34px, 9vw, 54px) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .experience__rail {
+    left: 6px;
+  }
+  .experience__item {
+    grid-template-columns: 28px minmax(0, 1fr);
+    padding: 2rem 0;
+  }
+  .experience__dot,
+  .experience__pulse {
+    left: 6px;
+  }
+  .experience__company {
+    gap: 0.3rem 0.6rem;
+  }
+}
+
+/* Disable infinite pulse for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .experience__pulse {
+    animation: none;
+    opacity: 0.4;
+  }
+}

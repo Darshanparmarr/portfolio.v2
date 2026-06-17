@@ -1,0 +1,160 @@
+/* =========================================================================
+   BASE — reset, global typography, layout primitives, shared utilities.
+   Section components add their own scoped classes; everything here is the
+   common ground they all build on.
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+* { margin: 0; padding: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis owns smooth scrolling */
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: clip;
+  /* faint warm grain/vignette so the dark canvas never feels flat */
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(255, 106, 26, 0.07), transparent 60%),
+    radial-gradient(90% 70% at 100% 100%, rgba(255, 61, 0, 0.05), transparent 55%);
+  background-attachment: fixed;
+}
+
+/* ---- Lenis smooth scroll ------------------------------------------------ */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ---- Typography --------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+img, svg, video { display: block; max-width: 100%; }
+ul { list-style: none; }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* ---- Scrollbar ---------------------------------------------------------- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #2a241e; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ---- Layout primitives -------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-pad);
+}
+.section--alt { background: var(--bg-2); }
+
+/* ---- Shared utilities --------------------------------------------------- */
+
+/* mono eyebrow label, e.g.  ( 01 / about ) */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.8em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.accent { color: var(--accent); }
+.dim { color: var(--fg-dim); }
+
+/* line that draws itself in on scroll (set scaleX via GSAP or .is-in) */
+.rule {
+  height: 1px;
+  width: 100%;
+  background: var(--line-2);
+  transform-origin: left center;
+}
+
+/* Generic reveal: components animate these with GSAP. The CSS fallback below
+   guarantees content is visible even if JS/anim fails. */
+.reveal { will-change: transform, opacity; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* magnetic / interactive targets hint the custom cursor */
+[data-cursor="hover"], a, button { cursor: none; }
+@media (hover: none) {
+  [data-cursor="hover"], a, button { cursor: pointer; }
+}
+
+/* ---- Buttons ------------------------------------------------------------ */
+.btn {
+  --pad-y: 0.9rem;
+  --pad-x: 1.6rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: var(--pad-y) var(--pad-x);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-2);
+  color: var(--fg);
+  overflow: hidden;
+  isolation: isolate;
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, var(--accent-3), var(--accent), var(--accent-2));
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease);
+}
+.btn:hover { color: var(--accent-ink); border-color: transparent; }
+.btn:hover::after { transform: translateY(0); }
+
+.btn--solid {
+  color: var(--accent-ink);
+  border-color: transparent;
+  background: linear-gradient(120deg, var(--accent-3), var(--accent), var(--accent-2));
+}
+.btn--solid::after { background: var(--fg); }
+.btn--solid:hover { color: var(--bg); }

@@ -1,0 +1,58 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: var(--gutter);
+}
+
+.preloader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 50% at 50% 50%, var(--glow-soft), transparent 70%);
+  pointer-events: none;
+}
+
+.preloader__name {
+  display: flex;
+  gap: 0.3em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 9vw, 7rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  overflow: hidden;
+}
+.preloader__name span { display: inline-block; will-change: transform; }
+.preloader__name span:last-child { color: var(--accent); }
+
+.preloader__bar-track {
+  width: min(420px, 70vw);
+  height: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.preloader__bar {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--accent-3), var(--accent), var(--accent-2));
+}
+
+.preloader__count {
+  position: absolute;
+  bottom: var(--gutter);
+  right: var(--gutter);
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 500;
+  color: var(--fg-dim);
+  letter-spacing: -0.02em;
+}

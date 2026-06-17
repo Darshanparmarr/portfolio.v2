@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1120" viewBox="0 0 900 1120" fill="none" role="img" aria-label="Portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17130f"/>
+      <stop offset="1" stop-color="#0b0a09"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="32%" r="60%">
+      <stop offset="0" stop-color="#ff6a1a" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#ff3d00" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ff3d00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffae5c"/>
+      <stop offset="1" stop-color="#ff3d00"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="1120" fill="url(#bg)"/>
+  <rect width="900" height="1120" fill="url(#glow)"/>
+
+  <!-- abstract figure -->
+  <g opacity="0.92">
+    <circle cx="450" cy="430" r="150" fill="url(#fig)" opacity="0.9"/>
+    <path d="M210 1120c0-160 108-300 240-300s240 140 240 300z" fill="url(#fig)" opacity="0.9"/>
+  </g>
+
+  <!-- soft scan lines for texture -->
+  <g opacity="0.06" fill="#f3eee6">
+    <rect y="0" width="900" height="2"/><rect y="40" width="900" height="2"/><rect y="80" width="900" height="2"/>
+    <rect y="120" width="900" height="2"/><rect y="160" width="900" height="2"/><rect y="200" width="900" height="2"/>
+  </g>
+
+  <text x="60" y="90" font-family="'JetBrains Mono', monospace" font-size="22" letter-spacing="6" fill="#ffae5c">DP / PORTRAIT</text>
+  <text x="60" y="1050" font-family="'JetBrains Mono', monospace" font-size="20" letter-spacing="2" fill="#9c948a">add public/profile.jpg</text>
+</svg>

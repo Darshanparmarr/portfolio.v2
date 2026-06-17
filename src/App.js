@@ -1,49 +1,61 @@
-import React, { useState, useEffect } from "react";
-import Preloader from "./components/Pre";
+import { useState, useEffect, useCallback } from "react";
+import { ScrollTrigger } from "./lib/gsap";
+import SmoothScroll from "./lib/SmoothScroll";
+import Cursor from "./components/Cursor";
+import Preloader from "./components/Preloader";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Projects from "./components/Projects/Projects";
-import Footer from "./components/Footer";
-import Resume from "./components/Resume/ResumeNew";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop";
-import "./style.css";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Hero from "./components/sections/Hero";
+import Marquee from "./components/sections/Marquee";
+import About from "./components/sections/About";
+import Skills from "./components/sections/Skills";
+import Work from "./components/sections/Work";
+import Experience from "./components/sections/Experience";
+import Contact from "./components/sections/Contact";
 
 function App() {
-  const [load, upadateLoad] = useState(true);
+  const [ready, setReady] = useState(false);
 
+  // Stable callback — keeps Preloader's effect from re-running (and re-locking
+  // scroll) when `ready` flips and App re-renders.
+  const onReady = useCallback(() => setReady(true), []);
+
+  // Safety net: reveal the hero even if the preloader never reports completion.
   useEffect(() => {
-    const timer = setTimeout(() => {
-      upadateLoad(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setReady(true), 6000);
+    return () => clearTimeout(t);
   }, []);
 
+  // Recompute ScrollTrigger start/end positions once the intro hands over and
+  // async layout (fonts, lazy images) has settled — they were created while the
+  // preloader pinned the page at scroll 0.
+  useEffect(() => {
+    if (!ready) return;
+    const refresh = () => ScrollTrigger.refresh();
+    const raf = requestAnimationFrame(refresh);
+    const t = setTimeout(refresh, 600);
+    window.addEventListener("load", refresh);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+      window.removeEventListener("load", refresh);
+    };
+  }, [ready]);
+
   return (
-    <Router>
-      <Preloader load={load} />
-      <div className="App" id={load ? "no-scroll" : "scroll"}>
-        <Navbar />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/project" element={<Projects />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <SmoothScroll>
+      <Cursor />
+      <Preloader onComplete={onReady} />
+      <Navbar />
+      <main>
+        <Hero ready={ready} />
+        <Marquee />
+        <About />
+        <Skills />
+        <Work />
+        <Experience />
+        <Contact />
+      </main>
+    </SmoothScroll>
   );
 }
 
