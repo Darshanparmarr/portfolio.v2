@@ -271,14 +271,6 @@
   }
 }
 
-/* Resting state must be the final visible state when motion is reduced or
-   JS does not run — words appear fully legible, never stuck muted. */
-@media (prefers-reduced-motion: reduce) {
-  .about__word {
-    color: var(--fg);
-  }
-
-  .about__img {
-    transform: none !important;
-  }
-}
+/* Reveals intentionally run on all devices (incl. reduced-motion) per the
+   owner's request for a lively mobile experience. Resting word color stays
+   legible (--fg-dim) so nothing is unreadable if JS doesn't run. */

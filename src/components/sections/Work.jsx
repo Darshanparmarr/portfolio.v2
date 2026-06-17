@@ -26,7 +26,6 @@ export default function Work() {
 
   // Scroll reveal for every row + the heading mask.
   useEffect(() => {
-    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".work__head-inner", {
         yPercent: 110,

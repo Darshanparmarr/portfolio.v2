@@ -40,10 +40,6 @@
   to { transform: translateX(-50%); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .marquee__track { animation: none; }
-}
-
 /* Phones: smaller items + tighter spacing so the band stays slim and never
    introduces a vertical scrollbar. Horizontal containment is guaranteed by
    .marquee { overflow: hidden }. */
