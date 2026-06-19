@@ -174,7 +174,7 @@ export default function Work() {
         </div>
       </div>
 
-      {!isTouch && (
+      {!isTouch && !prefersReducedMotion && (
         <div className="work__preview" ref={previewRef} aria-hidden="true">
           <img className="work__preview-img" ref={previewImgRef} alt="" />
         </div>
