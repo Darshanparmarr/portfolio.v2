@@ -28,7 +28,7 @@ export const site = {
   // Lives in /public — drop the file there and the link just works
   resume: "/DarshanParmarResume.pdf",
 
-  profileImage: "/profile.jpg",
+  profileImage: "/profile.jpeg",
 };
 
 export const about = {
