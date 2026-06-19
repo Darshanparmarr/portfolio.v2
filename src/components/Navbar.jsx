@@ -4,8 +4,9 @@ import { scrollTo } from "../lib/SmoothScroll";
 import "./Navbar.css";
 
 const LINKS = [
-  { label: "Work", target: "#work" },
   { label: "About", target: "#about" },
+  { label: "Skills", target: "#skills" },
+  { label: "Projects", target: "#work" },
   { label: "Experience", target: "#experience" },
   { label: "Contact", target: "#contact" },
 ];

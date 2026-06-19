@@ -43,7 +43,6 @@ function App() {
 
   return (
     <SmoothScroll>
-      <Cursor />
       <Preloader onComplete={onReady} />
       <Navbar />
       <main>
@@ -55,6 +54,7 @@ function App() {
         <Experience />
         <Contact />
       </main>
+      <Cursor />
     </SmoothScroll>
   );
 }

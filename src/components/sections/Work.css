@@ -189,6 +189,7 @@
   object-fit: cover;
   display: block;
   background: var(--bg-elev);
+  will-change: transform;
 }
 
 /* ---- Inline images (touch / narrow) -------------------------------------- */

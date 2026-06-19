@@ -36,7 +36,7 @@
 
 .contact__details {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto 1fr 1fr;
   gap: 2.5rem;
   padding-top: 2.5rem;
   border-top: 1px solid var(--line);
@@ -50,14 +50,13 @@
   color: var(--fg-mute);
 }
 .contact__email {
-  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+  font-size: clamp(1rem, 2.2vw, 1.8rem);
   font-weight: 500;
   border-bottom: 1px solid var(--line-2);
   padding-bottom: 0.4rem;
   width: fit-content;
   max-width: 100%;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  white-space: nowrap;
   transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
 .contact__email:hover { color: var(--accent); border-color: var(--accent); }

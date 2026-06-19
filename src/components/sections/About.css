@@ -68,6 +68,12 @@
   object-fit: cover;
   display: block;
   will-change: transform;
+  filter: brightness(0.8) contrast(1.08) saturate(0.85);
+  transition: filter var(--dur) var(--ease);
+}
+
+.about__frame:hover .about__img {
+  filter: brightness(0.95) contrast(1) saturate(1);
 }
 
 .about__tint {
@@ -75,10 +81,15 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, transparent 35%, var(--accent-ink) 140%),
-    linear-gradient(210deg, var(--glow-soft) 0%, transparent 45%);
-  mix-blend-mode: screen;
-  opacity: 0.85;
+    linear-gradient(180deg, rgba(11, 10, 9, 0) 30%, rgba(11, 10, 9, 0.85) 100%),
+    linear-gradient(210deg, rgba(255, 106, 26, 0.15) 0%, transparent 50%);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.about__frame:hover .about__tint {
+  opacity: 0.55;
 }
 
 .about__cap {

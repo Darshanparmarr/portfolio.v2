@@ -23,12 +23,12 @@ export const site = {
   availabilityNote: "Open to freelance & full-time roles",
 
   // TODO ▸ replace with your real public email
-  email: "darshan.parmar@example.com",
+  email: "darshuparmar67@gmail.com",
 
   // Lives in /public — drop the file there and the link just works
   resume: "/DarshanParmarResume.pdf",
 
-  profileImage: "/profile.jpeg",
+  profileImage: "/DarshanParmar.jpeg",
 };
 
 export const about = {

@@ -46,38 +46,121 @@ export default function Work() {
     return () => ctx.revert();
   }, []);
 
+  // Preload project screenshots on mount to ensure instant responsiveness on hover
+  useEffect(() => {
+    projects.forEach((p) => {
+      if (p.image) {
+        const img = new Image();
+        img.src = p.image;
+      }
+    });
+  }, []);
+
   // Desktop signature interaction: one shared cursor-following image preview.
   useEffect(() => {
-    if (prefersReducedMotion || isTouch) return;
-    if (!previewRef.current || !listRef.current || !previewImgRef.current) return;
+    if (!previewRef.current || !listRef.current || !previewImgRef.current) {
+      console.warn("Work Section: Missing refs for preview interaction.", {
+        previewRef: !!previewRef.current,
+        listRef: !!listRef.current,
+        previewImgRef: !!previewImgRef.current
+      });
+      return;
+    }
 
     const ctx = gsap.context(() => {
       const preview = previewRef.current;
       const img = previewImgRef.current;
       const list = listRef.current;
 
+      console.log("Work Section: Initializing desktop cursor-following image preview interaction.");
+
+      // Position center of preview at 0, 0 (transform-wise)
       gsap.set(preview, { autoAlpha: 0, scale: 0.85, xPercent: -50, yPercent: -50 });
 
-      const xTo = gsap.quickTo(preview, "x", { duration: 0.7, ease: "power3" });
-      const yTo = gsap.quickTo(preview, "y", { duration: 0.7, ease: "power3" });
+      // Create quickTo functions for ultra-smooth tracking
+      const xTo = gsap.quickTo(preview, "x", { duration: 0.6, ease: "power3" });
+      const yTo = gsap.quickTo(preview, "y", { duration: 0.6, ease: "power3" });
+      const rotateTo = gsap.quickTo(img, "rotation", { duration: 0.5, ease: "power3" });
+      const skewXTo = gsap.quickTo(img, "skewX", { duration: 0.5, ease: "power3" });
+
+      let lastX = window.innerWidth / 2;
+      let lastY = window.innerHeight / 2;
+      let lastTime = performance.now();
+      let tiltTimeout = null;
 
       const onMove = (e) => {
-        xTo(e.clientX);
-        yTo(e.clientY);
+        lastX = e.clientX;
+        lastY = e.clientY;
+
+        if (prefersReducedMotion) {
+          // If reduced motion is enabled, position instantly without smooth ease
+          gsap.set(preview, { x: e.clientX, y: e.clientY });
+        } else {
+          xTo(e.clientX);
+          yTo(e.clientY);
+
+          // Calculate horizontal velocity for the tilt effect
+          const now = performance.now();
+          const dt = now - lastTime;
+          if (dt > 0) {
+            const dx = e.clientX - lastX;
+            const speedX = dx / dt; // pixels per millisecond
+            
+            // Clamp values for a clean, premium tilt
+            const targetRot = gsap.utils.clamp(-12, 12, speedX * 8);
+            const targetSkew = gsap.utils.clamp(-8, 8, speedX * 5);
+            
+            rotateTo(targetRot);
+            skewXTo(targetSkew);
+          }
+          lastTime = now;
+        }
+
+        // Reset tilt back to 0 when the mouse stops moving
+        if (tiltTimeout) clearTimeout(tiltTimeout);
+        tiltTimeout = setTimeout(() => {
+          rotateTo(0);
+          skewXTo(0);
+        }, 80);
       };
+
+      // Listen to mousemove globally
+      window.addEventListener("mousemove", onMove);
 
       const show = (src) => {
         if (!src) return;
-        if (img.getAttribute("src") !== src) img.setAttribute("src", src);
-        gsap.to(preview, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" });
-      };
-      const hide = () => {
-        gsap.to(preview, { autoAlpha: 0, scale: 0.85, duration: 0.4, ease: "power3.out" });
+        console.log(`Work Section: Hover ENTER, loading preview image: ${src}`);
+
+        // Set position instantly to current mouse coordinates to prevent lag from 0, 0
+        gsap.set(preview, { x: lastX, y: lastY });
+        xTo(lastX);
+        yTo(lastY);
+
+        if (img.getAttribute("src") !== src) {
+          // Snappy image swap transition
+          gsap.timeline()
+            .to(img, { scale: 0.92, opacity: 0.4, duration: 0.12, ease: "power2.in" })
+            .call(() => {
+              console.log(`Work Section: Setting image src to ${src}`);
+              img.setAttribute("src", src);
+            })
+            .to(img, { scale: 1, opacity: 1, duration: 0.2, ease: "power2.out" });
+        } else {
+          gsap.to(img, { scale: 1, opacity: 1, duration: 0.2 });
+        }
+
+        gsap.to(preview, { autoAlpha: 1, scale: 1, duration: 0.4, ease: "power3.out" });
       };
 
-      window.addEventListener("mousemove", onMove);
+      const hide = () => {
+        console.log("Work Section: Hover LEAVE, hiding preview image.");
+        gsap.to(preview, { autoAlpha: 0, scale: 0.85, duration: 0.35, ease: "power3.out" });
+        gsap.to(img, { rotation: 0, skewX: 0, scale: 1, opacity: 1, duration: 0.35 });
+      };
 
       const rows = Array.from(list.querySelectorAll("[data-preview]"));
+      console.log(`Work Section: Binding events to ${rows.length} project items.`);
+
       const cleanups = rows.map((row) => {
         const src = row.getAttribute("data-preview");
         const enter = () => show(src);
@@ -92,12 +175,13 @@ export default function Work() {
 
       return () => {
         window.removeEventListener("mousemove", onMove);
+        if (tiltTimeout) clearTimeout(tiltTimeout);
         cleanups.forEach((fn) => fn());
       };
     }, root);
 
     return () => ctx.revert();
-  }, [isTouch]);
+  }, []); // Run once on mount; handles dynamically and does not rely on isTouch dependency.
 
   const heading = "Selected work";
 
@@ -174,11 +258,10 @@ export default function Work() {
         </div>
       </div>
 
-      {!isTouch && !prefersReducedMotion && (
-        <div className="work__preview" ref={previewRef} aria-hidden="true">
-          <img className="work__preview-img" ref={previewImgRef} alt="" />
-        </div>
-      )}
+      {/* Render preview DOM element always to prevent React mounting race conditions */}
+      <div className="work__preview" ref={previewRef} aria-hidden="true">
+        <img className="work__preview-img" ref={previewImgRef} alt="" />
+      </div>
     </section>
   );
 }
