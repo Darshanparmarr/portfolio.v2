@@ -10,7 +10,7 @@ export const site = {
   initials: "DP",
 
   // Rotating hero roles
-  roles: ["Full-Stack Developer", "Frontend Developer", "Freelancer"],
+  roles: ["Full-Stack Developer", "Frontend Developer", "Freelancer", "Backend Developer"],
   // Two-line monumental hero statement
   heroLines: ["SOFTWARE", "DEVELOPER"],
   tagline: "Turning ideas into meaningful digital experiences.",
@@ -57,23 +57,76 @@ export const socials = [
 
 /* Skill groups — add/remove freely; the grid adapts to the number of groups. */
 export const skills = [
-  { group: "Frontend", items: ["React.js", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"] },
-  { group: "Backend",  items: ["PHP", "Laravel", "Node.js", "Python"] },
-  { group: "Database", items: ["MySQL", "PostgreSQL"] },
-  { group: "Tooling",  items: ["Git", "GitHub", "VS Code", "Postman", "Canva"] },
+  {
+    group: "Frontend",
+    items: [
+      "React.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "Bootstrap",
+      "Next.js"
+    ]
+  },
+  {
+    group: "Backend",
+    items: [
+      "Java",
+      "Spring Boot",
+      "Microservices",
+      "PHP",
+      "Laravel",
+      "Node.js",
+      "Python"
+    ]
+  },
+  {
+    group: "Database",
+    items: [
+      "MySQL",
+      "PostgreSQL",
+      "JPA"
+    ]
+  },
+  {
+    group: "Tooling & AI",
+    items: [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Postman",
+      "Canva",
+      "Cursor",
+      "Windsurf",
+      "Claude CLI",
+      "Antigravity",
+      "Version Control System"
+    ]
+  }
 ];
 
 /* Experience timeline — newest first. */
 export const experience = [
   {
     role: "Full-Stack Developer Intern",
+    company: "Avadhan Softtech",
+    period: "November 2025 – April 2026",
+    location: "Remote",
+    current: false,
+    summary:
+      "Developed responsive web applications by contributing to both frontend and backend development. Built user-friendly interfaces, implemented backend logic using Core Java and Python, integrated APIs, and ensured cross-browser compatibility. Collaborated in an agile environment to deliver scalable, high-performance solutions while maintaining clean, efficient, and maintainable code.",
+    tags: ["React.js","Next.js" , "Java", "Python", "MySQL", "Git"],
+  },
+  {
+    role: "Full-Stack Developer Intern",
     company: "Positive Quadrant Technologies LLP",
     period: "Apr 2025 — Oct 2025",
-    location: "On-site",
+    location: "Remote",
     current: false,
     summary:
       "Built dynamic web apps with React.js, PHP & Laravel — RESTful APIs, authentication and MySQL integration. Refined UI/UX, collaborated via Git/GitHub in an Agile workflow, and owned end-to-end tasks from branding and logo design to client documentation.",
-    tags: ["React.js", "PHP", "Laravel", "MySQL", "Git"],
+    tags: ["React.js", "PHP", "Python", "MySQL", "Git"],
   },
   {
     role: "Python Developer Intern",

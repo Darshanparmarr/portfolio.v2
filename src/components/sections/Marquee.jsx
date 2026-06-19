@@ -1,8 +1,8 @@
 import "./Marquee.css";
 
 const WORDS = [
-  "React.js", "Laravel", "PHP", "Full-Stack", "MySQL",
-  "UI / UX", "JavaScript", "Freelance", "Clean Code", "Tailwind",
+  "React.js", "Microservices", "Java", "Spring Boot", "MySQL",
+  "JPA", "JavaScript", "JUnit", "Bootstrap", "Tailwind", "Next.js", "Git", "Version Control System"
 ];
 
 export default function Marquee() {
