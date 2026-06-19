@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "../../lib/gsap";
+import { gsap, prefersReducedMotion } from "../../lib/gsap";
 import { skills } from "../../data/site";
 import "./Skills.css";
 
@@ -7,6 +7,7 @@ export default function Skills() {
   const root = useRef(null);
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.utils.toArray(".skills__row").forEach((row) => {
         const st = { trigger: row, start: "top 85%" };

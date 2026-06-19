@@ -11,7 +11,7 @@ export default function Hero({ ready }) {
   // Intro reveal — animates FROM hidden, so the resting state is always
   // visible (if the timeline never runs, the hero still shows).
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power4.out" }, delay: 0.05 });
       tl.from(".hero__line-inner", { yPercent: 115, duration: 1.1, stagger: 0.12 })
@@ -40,7 +40,7 @@ export default function Hero({ ready }) {
 
   // Rotating role (always on its own line → no layout reflow)
   useEffect(() => {
-    if (!role.current) return;
+    if (prefersReducedMotion || !role.current) return;
     let i = 0;
     const el = role.current;
     const id = setInterval(() => {

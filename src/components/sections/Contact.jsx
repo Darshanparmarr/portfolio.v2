@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "../../lib/gsap";
+import { gsap, prefersReducedMotion } from "../../lib/gsap";
 import { scrollTo } from "../../lib/SmoothScroll";
 import { site, socials } from "../../data/site";
 import "./Contact.css";
@@ -8,6 +8,7 @@ export default function Contact() {
   const root = useRef(null);
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".contact__line-inner", {
         yPercent: 110,

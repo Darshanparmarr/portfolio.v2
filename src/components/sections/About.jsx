@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "../../lib/gsap";
+import { gsap, prefersReducedMotion } from "../../lib/gsap";
 import { site, about } from "../../data/site";
 import "./About.css";
 
@@ -7,6 +7,7 @@ export default function About() {
   const root = useRef(null);
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       // Word-by-word color scrub on the big statement
       gsap.to(".about__word", {

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "../../lib/gsap";
+import { gsap, prefersReducedMotion } from "../../lib/gsap";
 import { experience } from "../../data/site";
 import "./Experience.css";
 
@@ -8,6 +8,8 @@ export default function Experience() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      if (prefersReducedMotion) return;
+
       // Draw the vertical rail as the user scrolls through the list.
       const rail = root.current.querySelector(".experience__rail-fill");
       if (rail) {
