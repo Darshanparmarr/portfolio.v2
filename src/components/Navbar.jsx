@@ -9,6 +9,11 @@ const LINKS = [
   { label: "Projects", target: "#work" },
   { label: "Experience", target: "#experience" },
   { label: "Contact", target: "#contact" },
+    {
+    label: "Resume",
+    target: "https://darshanparmarr.vercel.app/DarshanParmarResume.pdf",
+    external: true,
+  },
 ];
 
 export default function Navbar() {
@@ -59,11 +64,28 @@ export default function Navbar() {
         </a>
 
         <nav className="nav__links">
-          {LINKS.map((l) => (
-            <a key={l.target} href={l.target} onClick={(e) => go(e, l.target)} data-cursor="hover">
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l) =>
+            l.external ? (
+              <a
+                key={l.target}
+                href={l.target}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="hover"
+              >
+                {l.label}
+              </a>
+            ) : (
+              <a
+                key={l.target}
+                href={l.target}
+                onClick={(e) => go(e, l.target)}
+                data-cursor="hover"
+              >
+                {l.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="nav__right">
@@ -90,19 +112,35 @@ export default function Navbar() {
         aria-hidden={!open}
       >
         <nav className="menu__links">
-          {LINKS.map((l, i) => (
-            <a
-              key={l.target}
-              href={l.target}
-              onClick={(e) => go(e, l.target)}
-              style={{ transitionDelay: `${0.06 * i + 0.1}s` }}
-              tabIndex={open ? 0 : -1}
-              data-cursor="hover"
-            >
-              <span className="menu__index">0{i + 1}</span>
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l, i) =>
+            l.external ? (
+              <a
+                key={l.target}
+                href={l.target}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ transitionDelay: `${0.06 * i + 0.1}s` }}
+                tabIndex={open ? 0 : -1}
+                data-cursor="hover"
+                onClick={() => setOpen(false)}
+              >
+                <span className="menu__index">0{i + 1}</span>
+                {l.label}
+              </a>
+            ) : (
+              <a
+                key={l.target}
+                href={l.target}
+                onClick={(e) => go(e, l.target)}
+                style={{ transitionDelay: `${0.06 * i + 0.1}s` }}
+                tabIndex={open ? 0 : -1}
+                data-cursor="hover"
+              >
+                <span className="menu__index">0{i + 1}</span>
+                {l.label}
+              </a>
+            )
+          )}
         </nav>
         <div className="menu__foot">
           <span>{site.location}</span>
