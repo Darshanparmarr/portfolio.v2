@@ -52,7 +52,7 @@ export const about = {
 export const socials = [
   { label: "GitHub",    handle: "Darshanparmarr",  url: "https://github.com/Darshanparmarr" },
   { label: "LinkedIn",  handle: "darshanparmarr",  url: "https://www.linkedin.com/in/darshanparmarr" },
-  { label: "Instagram", handle: "darshanparmar._", url: "https://www.instagram.com/darshanparmar._/" },
+  // { label: "Instagram", handle: "darshanparmar._", url: "https://www.instagram.com/darshanparmar._/" },
 ];
 
 /* Skill groups — add/remove freely; the grid adapts to the number of groups. */
