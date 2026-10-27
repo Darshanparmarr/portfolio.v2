@@ -6,13 +6,20 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.4rem var(--gutter);
+  /* Top padding grows by the status-bar / notch inset so the brand + burger
+     never sit under the system bar in standalone (PWA) mode; the side padding
+     clears a landscape notch. All insets are 0 on devices without a cutout. */
+  padding-top: calc(1.4rem + var(--safe-top));
+  padding-bottom: 1.4rem;
+  padding-left: max(var(--gutter), var(--safe-left));
+  padding-right: max(var(--gutter), var(--safe-right));
   transition: padding var(--dur) var(--ease), background var(--dur) var(--ease),
     backdrop-filter var(--dur) var(--ease), border-color var(--dur) var(--ease);
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
-  padding-block: 0.9rem;
+  padding-top: calc(0.9rem + var(--safe-top));
+  padding-bottom: 0.9rem;
   background: rgba(11, 10, 9, 0.55);
   backdrop-filter: blur(14px) saturate(140%);
   border-bottom-color: var(--line);
@@ -116,7 +123,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--gutter);
+  /* Fullscreen overlay → pad every edge clear of system insets. */
+  padding-top: max(var(--gutter), var(--safe-top));
+  padding-bottom: max(var(--gutter), var(--safe-bottom));
+  padding-left: max(var(--gutter), var(--safe-left));
+  padding-right: max(var(--gutter), var(--safe-right));
   clip-path: inset(0 0 100% 0);
   transition: clip-path 0.7s var(--ease);
   pointer-events: none;
@@ -169,7 +180,8 @@
     justify-content: flex-start;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding-block: clamp(5.5rem, 18vh, 9rem);
+    padding-top: calc(clamp(5.5rem, 18vh, 9rem) + var(--safe-top));
+    padding-bottom: calc(clamp(5.5rem, 18vh, 9rem) + var(--safe-bottom));
   }
   /* Push content into a vertically centered band when it fits, while still
      allowing scroll when it does not. */
@@ -181,7 +193,11 @@
    the giant menu type down so the longest word ("Experience") fits the
    content box (~viewport minus gutters) with no horizontal overflow. */
 @media (max-width: 540px) {
-  .nav { padding-inline: var(--gutter); gap: 0.75rem; }
+  .nav {
+    padding-left: max(var(--gutter), var(--safe-left));
+    padding-right: max(var(--gutter), var(--safe-right));
+    gap: 0.75rem;
+  }
   .nav__brand { font-size: 1.2rem; }
 
   .menu__links a {

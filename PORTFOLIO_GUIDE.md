@@ -33,7 +33,7 @@ npm run build    # production build into /build
 - **Your photo:** add `public/profile.jpg`, then set `profileImage: "/profile.jpg"` in `src/data/site.js`.
 - **Project shots:** replace `public/work/techupgrad.png` / `thirtysix.png` (or add new ones).
 - **Email:** set the real address in `site.js` (`email:`), used by the Contact section.
-- **Résumé:** replace `public/DarshanParmarResume.pdf`.
+- **Résumé:** replace `public/DarshanParmarResume2.pdf`.
 
 ## Notes
 - Respects `prefers-reduced-motion` (animations/smooth-scroll soften or disable).

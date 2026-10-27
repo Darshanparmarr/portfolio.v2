@@ -1,19 +1,27 @@
 {
+  "id": "/",
   "short_name": "Darshan",
   "name": "Darshan Parmar — Software Developer",
+  "description": "Darshan Parmar — Full-Stack Developer. Crafting clean, scalable web experiences with React, Laravel & PHP.",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["portfolio", "personal"],
   "icons": [
     {
       "src": "favicon.svg",
       "type": "image/svg+xml",
-      "sizes": "any"
+      "sizes": "any",
+      "purpose": "any"
     },
     {
       "src": "favicon.png",
       "type": "image/png",
-      "sizes": "256x256"
+      "sizes": "256x256",
+      "purpose": "any"
     }
   ],
   "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "theme_color": "#0b0a09",
   "background_color": "#0b0a09"

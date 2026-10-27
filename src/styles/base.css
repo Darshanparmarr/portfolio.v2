@@ -70,7 +70,10 @@ ul { list-style: none; }
   width: 100%;
   max-width: var(--maxw);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  /* Keep content clear of a side notch in landscape / standalone; on devices
+     without a cutout the insets are 0 so the gutter is used unchanged. */
+  padding-left: max(var(--gutter), var(--safe-left));
+  padding-right: max(var(--gutter), var(--safe-right));
 }
 
 .section {
@@ -103,6 +106,18 @@ ul { list-style: none; }
 
 .accent { color: var(--accent); }
 .dim { color: var(--fg-dim); }
+
+/* ---- Safe-area utilities -----------------------------------------------
+   Pad content clear of the status bar / notch / home indicator when the app
+   runs installed (standalone PWA) or edge-to-edge. Insets resolve to 0 on
+   devices without cutouts, so these are inert on desktop. Add to any element
+   that must not sit under a system inset. */
+.safe-top    { padding-top: var(--safe-top); }
+.safe-bottom { padding-bottom: var(--safe-bottom); }
+.safe-x {
+  padding-left: max(var(--gutter), var(--safe-left));
+  padding-right: max(var(--gutter), var(--safe-right));
+}
 
 /* line that draws itself in on scroll (set scaleX via GSAP or .is-in) */
 .rule {

@@ -53,6 +53,16 @@
   --maxw:        1680px;
   --maxw-text:   62ch;
 
+  /* ---- Safe-area insets (notch / status bar / home indicator) -----------
+     Non-zero only when the display cuts into the viewport (installed PWA in
+     standalone mode, or any viewport-fit=cover context). They fall back to 0
+     everywhere else, so referencing them is inert on desktop. Requires
+     <meta name="viewport" ... viewport-fit=cover> — set in index.html. */
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+
   /* ---- Radii ------------------------------------------------------------ */
   --radius:    14px;
   --radius-lg: 22px;

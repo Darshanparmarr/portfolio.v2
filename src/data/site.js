@@ -26,7 +26,7 @@ export const site = {
   email: "darshuparmar67@gmail.com",
 
   // Lives in /public — drop the file there and the link just works
-  resume: "/DarshanParmarResume.pdf",
+  resume: "/DarshanParmarResume2.pdf",
 
   profileImage: "/DarshanParmar.jpeg",
 };
@@ -109,10 +109,10 @@ export const skills = [
 /* Experience timeline — newest first. */
 export const experience = [
   {
-    role: "Full-Stack Developer Intern",
+    role: "Full-Stack Developer ",
     company: "Avadhan Softtech",
-    period: "November 2025 – April 2026",
-    location: "Remote",
+    period: "November 2025 – Present",
+    location: "Mumbai",
     current: false,
     summary:
       "Developed responsive web applications by contributing to both frontend and backend development. Built user-friendly interfaces, implemented backend logic using Core Java and Python, integrated APIs, and ensured cross-browser compatibility. Collaborated in an agile environment to deliver scalable, high-performance solutions while maintaining clean, efficient, and maintainable code.",
@@ -122,7 +122,7 @@ export const experience = [
     role: "Full-Stack Developer Intern",
     company: "Positive Quadrant Technologies LLP",
     period: "Apr 2025 — Oct 2025",
-    location: "Remote",
+    location: "Hybrid",
     current: false,
     summary:
       "Built dynamic web apps with React.js, PHP & Laravel — RESTful APIs, authentication and MySQL integration. Refined UI/UX, collaborated via Git/GitHub in an Agile workflow, and owned end-to-end tasks from branding and logo design to client documentation.",

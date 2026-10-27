@@ -11,7 +11,7 @@ const LINKS = [
   { label: "Contact", target: "#contact" },
     {
     label: "Resume",
-    target: "https://darshanparmarr.vercel.app/DarshanParmarResume.pdf",
+    target: "/DarshanParmarResume2.pdf",
     external: true,
   },
 ];
