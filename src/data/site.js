@@ -110,7 +110,7 @@ export const skills = [
 export const experience = [
   {
     role: "Full-Stack Developer ",
-    company: "Avadhan Softtech",
+    company: "Avadhana Softtech",
     period: "November 2025 – Present",
     location: "Mumbai",
     current: false,
