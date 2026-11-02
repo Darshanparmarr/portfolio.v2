@@ -37,8 +37,29 @@ export const projects = [
     featured: true,
   },
   {
+    id: "darshtalks",
+    index: "08",
+    title: "Darshtalks",
+    year: "2026",
+    category: "Personal Project",
+    role: "Full Stack Developer",
+    description:
+      "Designed and developed a creative platform featuring quotes, shayari, and expressive words through a visually engaging masonry-style layout, with diverse typography, dynamic content, and a smooth browsing experience.",
+    stack: [
+      "Next.js",
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "GSAP",
+      "Framer Motion",
+    ],
+    image: "/work/darshtalks.png",
+    link: "https://darshtalks.vercel.app",
+    featured: true,
+  },
+  {
     id: "homemade-desi-rasoi",
-    index: "02",
+    index: "03",
     title: "Akshar ECommerce",
     year: "2025",
     category: "E-Commerce",
@@ -52,7 +73,7 @@ export const projects = [
   },
   {
     id: "akshar-connect",
-    index: "03",
+    index: "04",
     title: "Akshar Connect",
     year: "2026",
     category: "Organization Management System",
@@ -66,7 +87,7 @@ export const projects = [
   },
   {
     id: "positive-quadrant",
-    index: "04",
+    index: "05",
     title: "Positive Quadrant",
     year: "2025",
     category: "Business Website",
@@ -83,7 +104,7 @@ export const projects = [
     index: "06",
     title: "Binary Power",
     year: "2026",
-    category: "Client Website",
+    category: "Freelance",
     role: "Freelance Developer",
     description:
       "Designed and developed a responsive corporate website for an industrial power solutions company with product showcases and lead generation features.",
@@ -95,8 +116,7 @@ export const projects = [
   {
     id: "travel-trend-research",
     index: "07",
-    title:
-      "Research Paper - Travel",
+    title: "Research Paper - Travel",
     year: "2026",
     category: "Research Publication",
     role: "Research Author",
@@ -105,6 +125,20 @@ export const projects = [
     stack: ["Python", "NLP", "Machine Learning", "NER", "Data Analysis"],
     image: "/work/researchpaper1.png",
     link: "https://iaraedu.com/about-journal/ijair-volume-13-issue-1-v-january-march-2026.php",
+    featured: true,
+  },
+  {
+    id: "tradebyhksksh",
+    index: "09",
+    title: "HKSKSH - Day Trader's Edge",
+    year: "2026",
+    category: "Freelance",
+    role: "Web Developer",
+    description:
+      "Developed a modern trading platform showcasing market insights, trading methodologies, and real-time-style chart visualizations. Features dedicated market analysis for XAUUSD, NIFTY, and BANK NIFTY, highlighting accumulation and distribution zones to help traders understand market movements.",
+    stack: ["React", "JavaScript", "Tailwind CSS", "GSAP"],
+    image: "/work/tradebyhksksh.png",
+    link: "https://tradebyhksksh.in",
     featured: true,
   },
 
