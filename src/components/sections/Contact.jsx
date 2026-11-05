@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, prefersReducedMotion } from "../../lib/gsap";
 import { scrollTo } from "../../lib/SmoothScroll";
+import { track } from "../../lib/analytics";
 import { site, socials } from "../../data/site";
 import "./Contact.css";
 
@@ -36,6 +37,7 @@ export default function Contact() {
           href={`mailto:${site.email}`}
           data-cursor-text="Email"
           data-cursor="hover"
+          onClick={() => track("contact_click", { method: "email", location: "cta" })}
         >
           <span className="contact__line"><span className="contact__line-inner">Let’s build</span></span>
           <span className="contact__line"><span className="contact__line-inner">something<em> ✦ </em>great</span></span>
@@ -44,7 +46,7 @@ export default function Contact() {
         <div className="contact__details">
           <div className="contact__block contact__reveal">
             <span className="contact__label">Email</span>
-            <a href={`mailto:${site.email}`} className="contact__email" data-cursor="hover">{site.email}</a>
+            <a href={`mailto:${site.email}`} className="contact__email" data-cursor="hover" onClick={() => track("contact_click", { method: "email", location: "details" })}>{site.email}</a>
           </div>
 
           <div className="contact__block contact__reveal">
@@ -52,7 +54,7 @@ export default function Contact() {
             <ul className="contact__socials">
               {socials.map((s) => (
                 <li key={s.label}>
-                  <a href={s.url} target="_blank" rel="noreferrer" data-cursor="hover">
+                  <a href={s.url} target="_blank" rel="noreferrer" data-cursor="hover" onClick={() => track("social_click", { network: s.label })}>
                     <span>{s.label}</span>
                     <span className="contact__handle">{s.handle} ↗</span>
                   </a>
@@ -64,7 +66,7 @@ export default function Contact() {
           <div className="contact__block contact__reveal">
             <span className="contact__label">Elsewhere</span>
             <ul className="contact__socials">
-              <li><a href={site.resume} target="_blank" rel="noreferrer" data-cursor="hover"><span>Résumé</span><span className="contact__handle">PDF ↗</span></a></li>
+              <li><a href={site.resume} target="_blank" rel="noreferrer" data-cursor="hover" onClick={() => track("resume_click", { location: "contact" })}><span>Résumé</span><span className="contact__handle">PDF ↗</span></a></li>
               <li><button onClick={() => scrollTo("#home")} data-cursor="hover"><span>Back to top</span><span className="contact__handle">↑</span></button></li>
             </ul>
           </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { ScrollTrigger } from "./lib/gsap";
+import { track } from "./lib/analytics";
 import SmoothScroll from "./lib/SmoothScroll";
 import Cursor from "./components/Cursor";
 import Preloader from "./components/Preloader";
@@ -23,6 +24,31 @@ function App() {
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 6000);
     return () => clearTimeout(t);
+  }, []);
+
+  // Section-view analytics: fire a GA event the first time each content
+  // section scrolls into view, so you can see how far people actually read.
+  // Safe no-op when GA isn't loaded (see lib/analytics).
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+    const ids = ["about", "skills", "work", "experience", "contact"];
+    const seen = new Set();
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !seen.has(e.target.id)) {
+            seen.add(e.target.id);
+            track("view_section", { section: e.target.id });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
   }, []);
 
   // Recompute ScrollTrigger start/end positions once the intro hands over and

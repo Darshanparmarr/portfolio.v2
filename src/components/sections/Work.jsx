@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "../../lib/gsap";
+import { track } from "../../lib/analytics";
 import { projects } from "../../data/projects";
 import "./Work.css";
 
@@ -242,6 +243,7 @@ export default function Work() {
                 data-cursor-text="View"
                 data-preview={p.image}
                 aria-label={`${p.title} — open project (opens in new tab)`}
+                onClick={() => track("project_click", { project: p.title, url: p.link })}
               >
                 {meta}
               </a>

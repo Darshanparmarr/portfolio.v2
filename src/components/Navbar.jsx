@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { site } from "../data/site";
 import { scrollTo } from "../lib/SmoothScroll";
+import { track } from "../lib/analytics";
 import "./Navbar.css";
 
 const LINKS = [
@@ -72,6 +73,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor="hover"
+                onClick={() => track("resume_click", { location: "nav" })}
               >
                 {l.label}
               </a>
@@ -122,7 +124,7 @@ export default function Navbar() {
                 style={{ transitionDelay: `${0.06 * i + 0.1}s` }}
                 tabIndex={open ? 0 : -1}
                 data-cursor="hover"
-                onClick={() => setOpen(false)}
+                onClick={() => { track("resume_click", { location: "menu" }); setOpen(false); }}
               >
                 <span className="menu__index">0{i + 1}</span>
                 {l.label}
@@ -144,7 +146,7 @@ export default function Navbar() {
         </nav>
         <div className="menu__foot">
           <span>{site.location}</span>
-          <a href={site.resume} target="_blank" rel="noreferrer" tabIndex={open ? 0 : -1} data-cursor="hover">
+          <a href={site.resume} target="_blank" rel="noreferrer" tabIndex={open ? 0 : -1} data-cursor="hover" onClick={() => track("resume_click", { location: "menu-foot" })}>
             Résumé ↗
           </a>
         </div>
