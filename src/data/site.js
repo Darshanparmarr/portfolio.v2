@@ -238,7 +238,7 @@ export const experience = [
   {
     role: "Full-Stack Developer",
     company: "Avadhana Softtech",
-    period: "November 2025 – Present",
+    period: "November 2025 – November 2026",
     location: "Mumbai",
     current: true,
 
