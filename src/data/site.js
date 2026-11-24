@@ -240,7 +240,7 @@ export const experience = [
     company: "Avadhana Softtech",
     period: "November 2025 – November 2026",
     location: "Mumbai",
-    current: true,
+    current: false,
 
     summary:
       "Built frontend interfaces and integrated Python and Core Java backend services through REST APIs. Worked with structured data validation, processing, debugging, search, filtering and API integration for business applications. Contributed to application features and business workflows while collaborating in an Agile development environment.",
